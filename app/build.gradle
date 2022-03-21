@@ -12,7 +12,7 @@ android {
 
     defaultConfig {
         applicationId "com.gato.foody"
-        minSdk 22
+        minSdk 23
         targetSdk 31
         versionCode 1
         versionName "1.0"
@@ -67,9 +67,10 @@ dependencies {
     implementation "androidx.room:room-ktx:2.4.2"
     androidTestImplementation "androidx.room:room-testing:2.4.2"
 
-    // Data binding
-    kapt "com.android.databinding:compiler:3.2.0-alpha10"
-    kapt "androidx.databinding:databinding-common:7.1.2"
+//    // Data binding
+////    kapt "com.android.databinding:compiler:3.2.0-alpha10"
+//    kapt "androidx.databinding:databinding-common:7.1.2"
+//    kapt "androidx.databinding:databinding-compiler:7.3.0-alpha05"
 
     // DataStore
     implementation "androidx.datastore:datastore-preferences:1.0.0"
@@ -82,15 +83,16 @@ dependencies {
     implementation 'com.squareup.retrofit2:converter-gson:2.9.0'
 
     //Dagger - Hilt
-    implementation "com.google.dagger:hilt-android:2.31-alpha"
+    implementation "com.google.dagger:hilt-android:2.28-alpha"
     kapt "com.google.dagger:hilt-android-compiler:2.28-alpha"
 
-    implementation "androidx.hilt:hilt-lifecycle-viewmodel:1.0.0-alpha03"
-    kapt "androidx.hilt:hilt-compiler:1.0.0"
+    implementation "androidx.hilt:hilt-lifecycle-viewmodel:1.0.0-alpha02"
+    kapt "androidx.hilt:hilt-compiler:1.0.0-alpha02"
 
     // Coroutines
     implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-core:1.5.2'
     implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-android:1.5.2'
+
 
     // Lifecycle
     implementation "androidx.lifecycle:lifecycle-extensions:2.2.0"

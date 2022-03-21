@@ -7,17 +7,17 @@
 
     <fragment
         android:id="@+id/recipesFragment"
-        android:name="com.gato.foody.RecipesFragment"
+        android:name="com.gato.foody.ui.fragmnet.recipes.RecipesFragment"
         android:label="Recipes"
         tools:layout="@layout/fragment_recipes" />
     <fragment
         android:id="@+id/favoriteRecipesFragment"
-        android:name="com.gato.foody.FavoriteRecipesFragment"
+        android:name="com.gato.foody.ui.fragmnet.favorite.FavoriteRecipesFragment"
         android:label="Favorites"
         tools:layout="@layout/fragment_favorite_recipes" />
     <fragment
         android:id="@+id/foodJokeFragment"
-        android:name="com.gato.foody.FoodJokeFragment"
+        android:name="com.gato.foody.ui.fragmnet.foodjoke.FoodJokeFragment"
         android:label="Food Joke"
         tools:layout="@layout/fragment_food_joke" />
 </navigation>
