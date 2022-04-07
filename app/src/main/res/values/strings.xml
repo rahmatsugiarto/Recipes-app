@@ -30,4 +30,14 @@
     <string name="primal">Primal</string>
     <string name="whole30">Whole30</string>
     <string name="apply">Apply</string>
+    <string name="search">Search</string>
+    <string name="cheap">Cheap</string>
+    <string name="healthy">Healthy</string>
+    <string name="dairy_free">Dairy Free</string>
+    <string name="save_to_favorites">Save To Favorites</string>
+    <string name="no_favorite_recipes">No Favorite Recipes</string>
+    <string name="delete_favorite_menu">Delete Favorite Menu</string>
+    <string name="delete_all">Delete all</string>
+    <string name="lorem_ipsum">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque tincidunt tellus diam, non vehicula orci luctus vitae. In ligula dui, interdum quis convallis nec, tempus sagittis urna.</string>
+    <string name="share">Share</string>
 </resources>
