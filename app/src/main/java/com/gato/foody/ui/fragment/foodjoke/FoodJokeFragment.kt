@@ -1,4 +1,4 @@
-package com.gato.foody.ui.fragmnet.foodjoke
+package com.gato.foody.ui.fragment.foodjoke
 
 import android.content.Intent
 import android.os.Bundle
@@ -56,7 +56,6 @@ class FoodJokeFragment : Fragment() {
                 is NetworkResult.Loading -> {
                     Log.d("FoodJokeFragment", "Loading")
                 }
-
             }
         }
 
@@ -81,18 +80,18 @@ class FoodJokeFragment : Fragment() {
 
     private fun loadDataFromCache() {
         lifecycleScope.launch {
-            mainViewModel.readFoodJokes.observe(viewLifecycleOwner) { database ->
+            mainViewModel.readFoodJoke.observe(viewLifecycleOwner) { database ->
                 if (!database.isNullOrEmpty()) {
-                    binding.foodJokeTextView.text = database[0].foodJoke.text
-                    foodJoke = database[0].foodJoke.text
+                    binding.foodJokeTextView.text = database.first().foodJoke.text
+                    foodJoke = database.first().foodJoke.text
                 }
             }
         }
     }
 
 
-    override fun onDestroy() {
-        super.onDestroy()
+    override fun onDestroyView() {
+        super.onDestroyView()
         _binding = null
     }
 }

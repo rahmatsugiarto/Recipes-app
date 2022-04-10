@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:background="@color/cardBackgroundColor"
-    tools:context=".ui.fragmnet.recipes.bottomsheet.RecipesBottomSheet">
+    tools:context=".ui.fragment.recipes.bottomsheet.RecipesBottomSheet">
 
 
     <TextView

@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:background="@color/backgroundColor"
     app:layoutDescription="@xml/fragment_overview_scene"
-    tools:context=".ui.fragmnet.overview.OverviewFragment">
+    tools:context=".ui.fragment.overview.OverviewFragment">
 
 
     <ImageView

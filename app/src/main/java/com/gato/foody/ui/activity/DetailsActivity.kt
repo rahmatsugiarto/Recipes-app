@@ -13,9 +13,9 @@ import com.gato.foody.R
 import com.gato.foody.adapter.PagerAdapter
 import com.gato.foody.data.database.entities.FavoritesEntity
 import com.gato.foody.databinding.ActivityDetailsBinding
-import com.gato.foody.ui.fragmnet.ingredients.IngredientsFragment
-import com.gato.foody.ui.fragmnet.instruction.InstructionFragment
-import com.gato.foody.ui.fragmnet.overview.OverviewFragment
+import com.gato.foody.ui.fragment.ingredients.IngredientsFragment
+import com.gato.foody.ui.fragment.instruction.InstructionFragment
+import com.gato.foody.ui.fragment.overview.OverviewFragment
 import com.gato.foody.util.Constants.Companion.RECIPE_RESULT_KEY
 import com.gato.foody.viewmodels.MainViewModel
 import com.google.android.material.snackbar.Snackbar
@@ -33,6 +33,7 @@ class DetailsActivity : AppCompatActivity() {
 
     private var recipeSaved = false
     private var savedRecipeId = 0
+    private lateinit var menuItem : MenuItem
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -63,7 +64,7 @@ class DetailsActivity : AppCompatActivity() {
             fragments,
             this
         )
-
+        binding.viewPager2.isUserInputEnabled = false
         binding.viewPager2.apply {
             adapter = pagerAdapter
         }
@@ -76,8 +77,8 @@ class DetailsActivity : AppCompatActivity() {
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         menuInflater.inflate(R.menu.details_menu, menu)
-        val manuItem = menu?.findItem(R.id.save_to_favorites_menu)
-        checkSavedRecipes(manuItem!!)
+        menuItem = menu!!.findItem(R.id.save_to_favorites_menu)
+        checkSavedRecipes(menuItem)
         return true
     }
 
@@ -97,11 +98,9 @@ class DetailsActivity : AppCompatActivity() {
             try {
                 for (savedRecipe in favoritesEntity) {
                     if (savedRecipe.result.id == args.result.id) {
-                        changeMenuIconColor(menuItem, R.color.yellow)
+                        changeMenuItemColor(menuItem, R.color.yellow)
                         savedRecipeId = savedRecipe.id
                         recipeSaved = true
-                    } else {
-                        changeMenuIconColor(menuItem, R.color.white)
                     }
                 }
             } catch (e: Exception) {
@@ -117,8 +116,8 @@ class DetailsActivity : AppCompatActivity() {
             0,
             args.result
         )
-        mainViewModel.insertFavoriteRecipes(favoritesEntity)
-        changeMenuIconColor(item, R.color.yellow)
+        mainViewModel.insertFavoriteRecipe(favoritesEntity)
+        changeMenuItemColor(item, R.color.yellow)
         showSnackBar("Recipe saved to favorites")
         recipeSaved = true
     }
@@ -128,8 +127,8 @@ class DetailsActivity : AppCompatActivity() {
             savedRecipeId,
             args.result
         )
-        mainViewModel.deleteFavoriteRecipes(favoritesEntity)
-        changeMenuIconColor(item, R.color.white)
+        mainViewModel.deleteFavoriteRecipe(favoritesEntity)
+        changeMenuItemColor(item, R.color.white)
         showSnackBar("Removed from favorites")
         recipeSaved = false
     }
@@ -144,8 +143,13 @@ class DetailsActivity : AppCompatActivity() {
         }.show()
     }
 
-    private fun changeMenuIconColor(item: MenuItem, color: Int) {
+    private fun changeMenuItemColor(item: MenuItem, color: Int) {
         item.icon.setTint(ContextCompat.getColor(this, color))
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        changeMenuItemColor(menuItem, R.color.white)
     }
 
 }

@@ -11,7 +11,7 @@ import androidx.navigation.findNavController
 import coil.load
 import com.gato.foody.R
 import com.gato.foody.models.Result
-import com.gato.foody.ui.fragmnet.recipes.RecipesFragmentDirections
+import com.gato.foody.ui.fragment.recipes.RecipesFragmentDirections
 import org.jsoup.Jsoup
 
 class RecipesRowBinding {
@@ -58,9 +58,9 @@ class RecipesRowBinding {
 
         @BindingAdapter("parseHtml")
         @JvmStatic
-        fun parseHtml(textView: TextView, descripsion: String) {
-            if (descripsion != null){
-                val desc = Jsoup.parse(descripsion).text()
+        fun parseHtml(textView: TextView, descriptions: String?) {
+            if (descriptions != null){
+                val desc = Jsoup.parse(descriptions).text()
                 textView.text = desc
             }
         }

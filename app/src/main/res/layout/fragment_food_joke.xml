@@ -15,12 +15,12 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@drawable/ic_food_joke_background"
-        tools:context=".ui.fragmnet.foodjoke.FoodJokeFragment">
+        tools:context=".ui.fragment.foodjoke.FoodJokeFragment">
 
         <com.google.android.material.card.MaterialCardView
             android:id="@+id/food_joke_cardView"
             readApiResponse3="@{mainViewModel.foodJokeResponse}"
-            readDatabase3="@{mainViewModel.readFoodJokes}"
+            readDatabase3="@{mainViewModel.readFoodJoke}"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="24dp"
@@ -74,7 +74,7 @@
             android:layout_height="100dp"
             android:alpha="0.5"
             readApiResponse4="@{mainViewModel.foodJokeResponse}"
-            readDatabase4="@{mainViewModel.readFoodJokes}"
+            readDatabase4="@{mainViewModel.readFoodJoke}"
             android:src="@drawable/ic_sad"
             android:visibility="invisible"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -92,7 +92,7 @@
             android:alpha="0.5"
             android:text="Error"
             readApiResponse4="@{mainViewModel.foodJokeResponse}"
-            readDatabase4="@{mainViewModel.readFoodJokes}"
+            readDatabase4="@{mainViewModel.readFoodJoke}"
             android:textSize="18sp"
             android:textStyle="bold"
             android:visibility="invisible"

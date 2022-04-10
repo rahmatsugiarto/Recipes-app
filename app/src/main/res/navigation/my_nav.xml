@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/recipesFragment"
-        android:name="com.gato.foody.ui.fragmnet.recipes.RecipesFragment"
+        android:name="com.gato.foody.ui.fragment.recipes.RecipesFragment"
         android:label="Recipes"
         tools:layout="@layout/fragment_recipes" >
         <action
@@ -23,7 +23,7 @@
     </fragment>
     <fragment
         android:id="@+id/favoriteRecipesFragment"
-        android:name="com.gato.foody.ui.fragmnet.favorite.FavoriteRecipesFragment"
+        android:name="com.gato.foody.ui.fragment.favorite.FavoriteRecipesFragment"
         android:label="Favorites"
         tools:layout="@layout/fragment_favorite_recipes" >
         <action
@@ -32,12 +32,12 @@
     </fragment>
     <fragment
         android:id="@+id/foodJokeFragment"
-        android:name="com.gato.foody.ui.fragmnet.foodjoke.FoodJokeFragment"
+        android:name="com.gato.foody.ui.fragment.foodjoke.FoodJokeFragment"
         android:label="Food Joke"
         tools:layout="@layout/fragment_food_joke" />
     <dialog
         android:id="@+id/recipesBottomSheet"
-        android:name="com.gato.foody.ui.fragmnet.recipes.bottomsheet.RecipesBottomSheet"
+        android:name="com.gato.foody.ui.fragment.recipes.bottomsheet.RecipesBottomSheet"
         android:label="recipes_bottom_sheet"
         tools:layout="@layout/recipes_bottom_sheet" >
         <action

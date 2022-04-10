@@ -1,7 +1,6 @@
 package com.gato.foody.util
 
 import androidx.recyclerview.widget.DiffUtil
-import com.gato.foody.models.Result
 
 class RecipesDiffUtil<T>(
     private val oldList: List<T>,

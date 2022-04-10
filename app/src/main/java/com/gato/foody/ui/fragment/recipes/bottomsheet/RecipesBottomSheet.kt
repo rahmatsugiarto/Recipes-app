@@ -1,4 +1,4 @@
-package com.gato.foody.ui.fragmnet.recipes.bottomsheet
+package com.gato.foody.ui.fragment.recipes.bottomsheet
 
 import android.os.Bundle
 import android.util.Log
@@ -50,7 +50,7 @@ class RecipesBottomSheet : BottomSheetDialogFragment() {
 
         binding.mealTypeChipGroup.setOnCheckedChangeListener { group, selectedChipId ->
             val chip = group.findViewById<Chip>(selectedChipId)
-            val selectedMealType = chip.text.toString().toLowerCase(Locale.ROOT)
+            val selectedMealType = chip.text.toString().lowercase()
             mealTypeChip = selectedMealType
             mealTypeChipId = selectedChipId
         }
@@ -63,12 +63,13 @@ class RecipesBottomSheet : BottomSheetDialogFragment() {
         }
 
         binding.applyBtn.setOnClickListener {
-            recipesViewModel.saveMealAndDietType(
+            recipesViewModel.saveMealAndDietTypeTemp(
                 mealTypeChip,
                 mealTypeChipId,
                 dietTypeChip,
                 dietTypeChipId
             )
+            Log.d("applyBtn", "onCreateView: $mealTypeChip, $mealTypeChipId, $dietTypeChip, $dietTypeChipId")
             val action =
                 RecipesBottomSheetDirections.actionRecipesBottomSheetToRecipesFragment(true)
             findNavController().navigate(action)
@@ -80,7 +81,9 @@ class RecipesBottomSheet : BottomSheetDialogFragment() {
     private fun updateChip(chipId: Int, chipGroup: ChipGroup) {
         if (chipId != 0) {
             try {
-                chipGroup.findViewById<Chip>(chipId).isChecked = true
+                val targetView = chipGroup.findViewById<Chip>(chipId)
+                targetView.isChecked = true
+                chipGroup.requestChildFocus(targetView, targetView)
             } catch (e: Exception) {
                 Log.d("RecipesBottomSheet", e.message.toString())
             }

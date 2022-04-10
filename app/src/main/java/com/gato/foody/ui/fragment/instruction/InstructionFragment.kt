@@ -1,4 +1,4 @@
-package com.gato.foody.ui.fragmnet.instruction
+package com.gato.foody.ui.fragment.instruction
 
 import android.os.Bundle
 import android.view.LayoutInflater

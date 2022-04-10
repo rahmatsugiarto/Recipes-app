@@ -8,8 +8,6 @@ import androidx.room.Query
 import com.gato.foody.data.database.entities.FavoritesEntity
 import com.gato.foody.data.database.entities.FoodJokeEntity
 import com.gato.foody.data.database.entities.RecipesEntity
-import com.gato.foody.models.FoodJoke
-import com.gato.foody.util.Constants
 import com.gato.foody.util.Constants.Companion.FAVORITE_RECIPES_TABLE
 import com.gato.foody.util.Constants.Companion.FOOD_JOKE_TABLE
 import com.gato.foody.util.Constants.Companion.RECIPES_TABLE

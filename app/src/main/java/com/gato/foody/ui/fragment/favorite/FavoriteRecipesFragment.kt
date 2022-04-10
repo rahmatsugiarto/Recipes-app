@@ -1,4 +1,4 @@
-package com.gato.foody.ui.fragmnet.favorite
+package com.gato.foody.ui.fragment.favorite
 
 import android.os.Bundle
 import android.view.*

@@ -10,7 +10,7 @@ import com.gato.foody.R
 import com.gato.foody.adapter.FavoriteRecipesAdapter.MyViewHolder
 import com.gato.foody.data.database.entities.FavoritesEntity
 import com.gato.foody.databinding.FavoriteRecipesRowLayoutBinding
-import com.gato.foody.ui.fragmnet.favorite.FavoriteRecipesFragmentDirections
+import com.gato.foody.ui.fragment.favorite.FavoriteRecipesFragmentDirections
 import com.gato.foody.util.RecipesDiffUtil
 import com.gato.foody.viewmodels.MainViewModel
 import com.google.android.material.snackbar.Snackbar
@@ -21,7 +21,6 @@ class FavoriteRecipesAdapter(
 ) : RecyclerView.Adapter<MyViewHolder>(), ActionMode.Callback {
 
     private var multiSelection = false
-    private lateinit var rootView: View
 
     private lateinit var mActionMode: ActionMode
 
@@ -56,10 +55,11 @@ class FavoriteRecipesAdapter(
 
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
         myViewHolder.add(holder)
-        rootView = holder.itemView.rootView
 
         val currentRecipe = favoriteRecipes[position]
         holder.bind(currentRecipe)
+
+        saveItemStateOnScroll(currentRecipe, holder)
 
         /**
          * Single Click Listener
@@ -86,10 +86,18 @@ class FavoriteRecipesAdapter(
                 applySelection(holder, currentRecipe)
                 true
             } else {
-                multiSelection = false
-                false
+                applySelection(holder, currentRecipe)
+                true
             }
 
+        }
+    }
+
+    private fun saveItemStateOnScroll(currentRecipes: FavoritesEntity, holder: MyViewHolder){
+        if (selectedRecipes.contains(currentRecipes)) {
+            changeRecipeStyle(holder, R.color.cardBackgroundLightColor, R.color.colorPrimary)
+        } else {
+            changeRecipeStyle(holder, R.color.cardBackgroundColor, R.color.strokeColor)
         }
     }
 
@@ -120,7 +128,10 @@ class FavoriteRecipesAdapter(
 
     private fun applyActionModeTitle() {
         when (selectedRecipes.size) {
-            0 -> mActionMode.finish()
+            0 -> {
+                mActionMode.finish()
+                multiSelection = false
+            }
             1 -> mActionMode.title = "${selectedRecipes.size} item selected"
             else -> mActionMode.title = "${selectedRecipes.size} items selected"
         }
@@ -140,7 +151,7 @@ class FavoriteRecipesAdapter(
     override fun onActionItemClicked(actionMode: ActionMode?, menu: MenuItem?): Boolean {
         if (menu?.itemId == R.id.delete_favorite_recipe_menu) {
             selectedRecipes.forEach {
-                mainViewModel.deleteFavoriteRecipes(it)
+                mainViewModel.deleteFavoriteRecipe(it)
             }
             showSnackBar("${selectedRecipes.size} Recipe/s removed")
 
@@ -178,7 +189,7 @@ class FavoriteRecipesAdapter(
 
     private fun showSnackBar(message: String) {
         Snackbar.make(
-            rootView,
+            requireActivity.findViewById(android.R.id.content),
             message,
             Snackbar.LENGTH_SHORT
         ).setAction("Okay") {}

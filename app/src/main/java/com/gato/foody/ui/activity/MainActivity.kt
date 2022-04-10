@@ -24,9 +24,8 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-
         navController = findNavController(R.id.navHostFragment)
-        val appBarConfigurationException = AppBarConfiguration(
+        val appBarConfiguration = AppBarConfiguration(
             setOf(
                 R.id.recipesFragment,
                 R.id.favoriteRecipesFragment,
@@ -35,7 +34,8 @@ class MainActivity : AppCompatActivity() {
         )
 
         binding.bottomNavigationView.setupWithNavController(navController)
-        setupActionBarWithNavController(navController, appBarConfigurationException)
+        setupActionBarWithNavController(navController, appBarConfiguration)
+
     }
 
     override fun onSupportNavigateUp(): Boolean {
